@@ -228,10 +228,10 @@ RUN curl -fLo Adobe-Fonts.zip https://github.com/XiangyunHuang/fonts/releases/do
     && mkdir -p ~/.fonts \
     && unzip Adobe-Fonts.zip -d ~/.fonts/adobe \
     && fc-cache -fsv \
-    && tlmgr install ctex xecjk courier courier-scaled savesym \
-        colortbl dvipng dvisvgm environ fancyhdr jknapltx listings \
-        makecell mathdesign metalogo microtype ms multirow parskip pdfcrop \
-        pgf placeins preview psnfss realscripts relsize rsfs setspace soul \
+    && tlmgr install courier courier-scaled savesym \
+        colortbl dvipng dvisvgm fancyhdr \
+        makecell mathdesign microtype multirow \
+        placeins preview psnfss relsize setspace soul \
         standalone subfig symbol tabu tex4ht threeparttable threeparttablex \
-        titlesec tocbibind tocloft trimspaces ulem varwidth wrapfig xcolor \
-        xltxtra zhnumber cancel titlepic mdwtools
+        titlesec tocbibind tocloft varwidth wrapfig \
+        cancel titlepic
