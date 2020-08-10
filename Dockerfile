@@ -9,11 +9,11 @@ LABEL maintainer="An unoffical MSG-book docker"
 ARG PANDOC_VERSION=2.10.1
 ## Remain current
 RUN apt-get update -qq \
-	&& apt-get dist-upgrade -y
+    && apt-get dist-upgrade -y
 
 ## From the Build-Depends of the Debian R package, plus subversion
 RUN apt-get update -qq \
-	&& apt-get install -t unstable -y --no-install-recommends \
+    && apt-get install -t unstable -y --no-install-recommends \
         apt-utils \
         bash-completion \
         bison \
@@ -102,7 +102,7 @@ RUN cd /tmp \
 
 ## Build and install according the standard 'recipe' I emailed/posted years ago
 RUN cd /tmp/R-devel \
-	&& R_PAPERSIZE=letter \
+    && R_PAPERSIZE=letter \
         R_BATCHSAVE="--no-save --no-restore" \
         R_BROWSER=xdg-open \
         PAGER=/usr/bin/pager \
@@ -114,15 +114,15 @@ RUN cd /tmp/R-devel \
         AWK=/usr/bin/awk \
         CFLAGS=$(R CMD config CFLAGS) \
         CXXFLAGS=$(R CMD config CXXFLAGS) \
-	./configure --enable-R-shlib \
+    ./configure --enable-R-shlib \
                --without-blas \
                --without-lapack \
                --with-readline \
                --without-recommended-packages \
                --program-suffix=dev \
-	&& make \
-	&& make install \
-	&& rm -rf /tmp/R-devel
+    && make \
+    && make install \
+    && rm -rf /tmp/R-devel
 
 ## Set Renviron to get libs from base R install
 RUN echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R/site-library:/usr/local/lib/R/library:/usr/lib/R/library'}" >> /usr/local/lib/R/etc/Renviron
