@@ -30,6 +30,10 @@ RUN apt-get update -qq \
         groff-base \
         file \
         imagemagick \
+        jags \
+        unixodbc-dev \
+        odbc-postgresql \
+        libsqliteodbc \
         libblas-dev \
         libbz2-dev \
         libcairo2-dev/unstable \
@@ -82,6 +86,8 @@ RUN apt-get update -qq \
         zlib1g-dev \
         zip \
         unzip
+    && apt-get clean all \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN wget -q --no-check-certificate "https://travis-bin.yihui.name/texlive-local.deb" \
     && dpkg -i texlive-local.deb \
@@ -139,9 +145,7 @@ RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.m
     && tar -xzf /opt/pandoc/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz -C /opt/pandoc \
     && ln -s /opt/pandoc/pandoc-${PANDOC_VERSION}/bin/pandoc /usr/local/bin \
     && ln -s /opt/pandoc/pandoc-${PANDOC_VERSION}/bin/pandoc-citeproc /usr/local/bin \
-    && rm /opt/pandoc/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz \
-    && apt-get clean all \
-    && rm -rf /var/lib/apt/lists/*
+    && rm /opt/pandoc/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz
 
 ## Copy 'checkbashisms' (as a local copy from devscripts package)
 COPY checkbashisms /usr/local/bin
@@ -210,9 +214,14 @@ RUN xvfb-run install2.r --error \
     quantreg \
     iplots \
     tuneR \
+    odbc \
+    glmmTMB \
+    nimble \
+    rstan \
+	# add MSG-book new packages
+	survminer \
     && installGithub.r \
     yihui/fun
-
 
 ## Install Adobe fonts
 RUN curl -fLo Adobe-Fonts.zip https://github.com/XiangyunHuang/fonts/releases/download/v0.1/Adobe-Fonts.zip \
@@ -225,6 +234,4 @@ RUN curl -fLo Adobe-Fonts.zip https://github.com/XiangyunHuang/fonts/releases/do
         pgf placeins preview psnfss realscripts relsize rsfs setspace soul \
         standalone subfig symbol tabu tex4ht threeparttable threeparttablex \
         titlesec tocbibind tocloft trimspaces ulem varwidth wrapfig xcolor \
-        xltxtra zhnumber cancel titlepic mdwtools \
-    && apt-get clean all \
-    && rm -rf /var/lib/apt/lists/*
+        xltxtra zhnumber cancel titlepic mdwtools
