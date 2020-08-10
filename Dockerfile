@@ -15,42 +15,42 @@ RUN apt-get update -qq \
 RUN apt-get update -qq \
 	&& apt-get install -t unstable -y --no-install-recommends \
         apt-utils \
-		bash-completion \
-		bison \
+        bash-completion \
+        bison \
         curl \
         dialog \
-		debhelper \
-		default-jdk \
-		g++ \
-		gcc \
-		gdb \
-		gfortran \
+        debhelper \
+        default-jdk \
+        g++ \
+        gcc \
+        gdb \
+        gfortran \
         ghostscript \
         gnupg \
-		groff-base \
+        groff-base \
         file \
         imagemagick \
-		libblas-dev \
-		libbz2-dev \
-		libcairo2-dev/unstable \
-		libcurl4-openssl-dev \
-		libjpeg-dev \
+        libblas-dev \
+        libbz2-dev \
+        libcairo2-dev/unstable \
+        libcurl4-openssl-dev \
+        libjpeg-dev \
         libgit2-dev \
         libglpk-dev \
         libgmp-dev \
-		liblapack-dev \
-		liblzma-dev \
-		libncurses5-dev \
+        liblapack-dev \
+        liblzma-dev \
+        libncurses5-dev \
         libnlopt-dev \
         libnode-dev \
-		libpango1.0-dev \
-		libpcre3-dev \
-		libpng-dev \
-		libreadline-dev \
+        libpango1.0-dev \
+        libpcre3-dev \
+        libpng-dev \
+        libreadline-dev \
         libssl-dev \
-		libtiff5-dev \
-		libx11-dev \
-		libxt-dev \
+        libtiff5-dev \
+        libx11-dev \
+        libxt-dev \
         libxaw7-dev \
         libxml2-dev \
         libxpm-dev \
@@ -67,19 +67,19 @@ RUN apt-get update -qq \
         libavfilter-dev \
         libfftw3-dev \
         cargo \
-		mpack \
+        mpack \
         optipng \
         qpdf \
-		subversion \
-		tcl8.6-dev \
-		texinfo \
-		tk8.6-dev \
-		x11proto-core-dev \
-		xauth \
-		xdg-utils \
-		xfonts-base \
-		xvfb \
-		zlib1g-dev \
+        subversion \
+        tcl8.6-dev \
+        texinfo \
+        tk8.6-dev \
+        x11proto-core-dev \
+        xauth \
+        xdg-utils \
+        xfonts-base \
+        xvfb \
+        zlib1g-dev \
         zip \
         unzip
 
@@ -103,17 +103,17 @@ RUN cd /tmp \
 ## Build and install according the standard 'recipe' I emailed/posted years ago
 RUN cd /tmp/R-devel \
 	&& R_PAPERSIZE=letter \
-		R_BATCHSAVE="--no-save --no-restore" \
-		R_BROWSER=xdg-open \
-		PAGER=/usr/bin/pager \
-		PERL=/usr/bin/perl \
-		R_UNZIPCMD=/usr/bin/unzip \
-		R_ZIPCMD=/usr/bin/zip \
-		R_PRINTCMD=/usr/bin/lpr \
-		LIBnn=lib \
-		AWK=/usr/bin/awk \
-		CFLAGS=$(R CMD config CFLAGS) \
-		CXXFLAGS=$(R CMD config CXXFLAGS) \
+        R_BATCHSAVE="--no-save --no-restore" \
+        R_BROWSER=xdg-open \
+        PAGER=/usr/bin/pager \
+        PERL=/usr/bin/perl \
+        R_UNZIPCMD=/usr/bin/unzip \
+        R_ZIPCMD=/usr/bin/zip \
+        R_PRINTCMD=/usr/bin/lpr \
+        LIBnn=lib \
+        AWK=/usr/bin/awk \
+        CFLAGS=$(R CMD config CFLAGS) \
+        CXXFLAGS=$(R CMD config CXXFLAGS) \
 	./configure --enable-R-shlib \
                --without-blas \
                --without-lapack \
